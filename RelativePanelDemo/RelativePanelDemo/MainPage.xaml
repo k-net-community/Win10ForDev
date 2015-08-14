@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="App2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel Margin="100,50,100,50">
+            <StackPanel x:Name="stackPanel1" Orientation="Vertical" Width="200" Margin="10" Height="200" 
+                        Background="LightBlue">
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="白天-晴朗"/>
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="晚上-多雲涼爽"/>
+            </StackPanel>
+            <StackPanel x:Name="stackPanel2" Orientation="Vertical" Width="200" Margin="10" Height="200" 
+                        Background="LightCoral" RelativePanel.RightOf="stackPanel1">
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="日出-上午 05:05"/>
+                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="日落-下午 06:33"/>
+            </StackPanel>
+            <StackPanel x:Name="stackPanel3" Orientation="Vertical" Width="200" Height="200" Margin="10" 
+                        Background="LightGreen" RelativePanel.RightOf="stackPanel2" >
+                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="月出-上午 01:05"/>
+                <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="月落-下午 03:13"/>
+            </StackPanel>
+        </RelativePanel>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="min1000">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="min600">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="601"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stackPanel3.(RelativePanel.Below)" Value="stackPanel1" ></Setter>
+                        <Setter Target="stackPanel3.(RelativePanel.RightOf)" Value="" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="min">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stackPanel2.(RelativePanel.RightOf)" Value="" ></Setter>
+                        <Setter Target="stackPanel3.(RelativePanel.RightOf)" Value="" ></Setter>
+                        <Setter Target="stackPanel2.(RelativePanel.Below)" Value="stackPanel1" ></Setter>
+                        <Setter Target="stackPanel3.(RelativePanel.Below)" Value="stackPanel2" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
