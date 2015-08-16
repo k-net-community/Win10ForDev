@@ -76,7 +76,20 @@ namespace App1
                 // 在巡覽堆疊未還原時，巡覽至第一頁，
                 // 設定新的頁面，方式是透過傳遞必要資訊做為巡覽
                 // 參數
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                //rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                var currentview = DisplayInformation.GetForCurrentView();
+                var width = Window.Current.Bounds.Width * (int)currentview.ResolutionScale / 100;
+                var height = Window.Current.Bounds.Height * (int)currentview.ResolutionScale / 100;
+                var dpi = DisplayInformation.GetForCurrentView().RawDpiY;
+                var screenDiagonal = Math.Sqrt(Math.Pow(width / dpi, 2) + Math.Pow(height / dpi, 2));
+
+                if (screenDiagonal <= 7)
+                    rootFrame.Navigate(typeof(MainPageForMobile), e.Arguments);
+                else
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+
             }
             // 確定目前視窗是作用中
             Window.Current.Activate();

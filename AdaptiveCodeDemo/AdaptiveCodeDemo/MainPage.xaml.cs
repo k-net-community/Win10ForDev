@@ -26,16 +26,16 @@ namespace App7
         {
             this.InitializeComponent();
 
-            //if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            //{
-            //    Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
-            //}
-
-
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                Windows.Phone.UI.Input.HardwareButtons.CameraPressed += HardwareButtons_CameraPressed;
+                Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
             }
+
+
+            //if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            //{
+            //    Windows.Phone.UI.Input.HardwareButtons.CameraPressed += HardwareButtons_CameraPressed;
+            //}
 
         }
 
